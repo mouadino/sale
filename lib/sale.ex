@@ -1,0 +1,2 @@
+defmodule Sale do
+end
