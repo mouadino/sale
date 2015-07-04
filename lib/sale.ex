@@ -1,2 +1,0 @@
-defmodule Sale do
-end
