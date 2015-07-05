@@ -1,7 +1,6 @@
 defmodule UserTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
-  # FIXME: Auto drop/create/migrate of db.
   setup do
     {:ok, server} = User.Server.start_link
     {:ok, server: server}
