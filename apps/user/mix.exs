@@ -34,7 +34,13 @@ defmodule User.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:sqlite_ecto, "~> 0.3.0"},
-     {:ecto, "~> 0.13.1"}]
+    [
+      # NOTE: Temporarily use esqlite git master to be able to work with
+      # Erlang18
+      {:esqlite, git: "https://github.com/mmzeeman/esqlite.git", override: true},
+      {:sqlite_ecto, "~> 0.3.0"},
+      {:ecto, "~> 0.13.1"}
+    ]
+
   end
 end
