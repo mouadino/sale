@@ -1,13 +1,13 @@
 defmodule User do
   use Application
 
-  @server_name User.Server
+  @name :user
 
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(User.Server, [[name: @server_name]]),
+      worker(User.Server, [[name: {:global, @name}]]),
       worker(User.Repo, [])
     ]
 

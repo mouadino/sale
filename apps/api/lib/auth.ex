@@ -13,8 +13,8 @@ defmodule Auth do
   end
 
   defp valid_token?(token) do
-    # TODO: How to do remote call (different application ?)
-    pid = :erlang.whereis User.Server
+    pid = :global.whereis_name :user
+    # TODO: Handle :undefined
     case GenServer.call(pid, {:get_by_token, token}) do
       {:ok, _} -> true
       _ -> false
