@@ -44,6 +44,22 @@ Quite few timeouts like the following happened:
     "xyz"}, 5000)
       ** (EXIT) time out
 
+After upgrading to github esqlite master on my virtualbox vm
+
+    $ ./wrk -t10 -c400 -d30s -H"Authorization: xyz" http://127.0.0.1:8880/user/
+    Running 30s test @ http://127.0.0.1:8880/user/
+      10 threads and 400 connections
+      Thread Stats   Avg      Stdev     Max   +/- Stdev
+        Latency   618.38ms  213.55ms   1.02s    63.71%
+        Req/Sec    80.16     59.79   393.00     69.80%
+      18984 requests in 30.10s, 4.06MB read
+      Non-2xx or 3xx responses: 18984
+    Requests/sec:    630.72
+    Transfer/sec:    137.97KB
+
+NOTE: No timeouts
+
+
 TODO
 ----
 

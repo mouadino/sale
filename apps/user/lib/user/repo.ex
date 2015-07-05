@@ -1,4 +1,3 @@
 defmodule User.Repo do
-  use Ecto.Repo,
-    otp_app: :user
+  use Ecto.Repo, otp_app: :user
 end

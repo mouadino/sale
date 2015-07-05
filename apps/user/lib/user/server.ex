@@ -30,7 +30,7 @@ defmodule User.Server do
   end
 
   @doc """
-  Greate a new user.
+  Create a new user.
   """
   def create(username, token) do
     user = %UserModel{username: username, token: token}
