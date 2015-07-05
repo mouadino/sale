@@ -26,7 +26,6 @@ defmodule User.Server do
     query = from u in UserModel,
          where: u.token == ^token,
          select: u
-    # TODO: {:notfound, []}  If user is not found.
     {:ok, Repo.one(query)}
   end
 

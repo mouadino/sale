@@ -1,13 +1,14 @@
 defmodule Api do
   use Maru.Router
-  alias Maru.Exceptions.NotFound
+
+  require Logger
 
   plug Plug.Logger
   # FIXME: Debugger doesn't work :(
   #plug Plug.Debugger  # FIXME: Only when Mix.env is dev:
-  plug Auth
 
   mount Api.User
+  mount Api.Order
 
   get do
     # TODO: Show something like this https://github.com/falood/maru/blob/master/lib/mix/tasks/routers.ex.
@@ -24,9 +25,10 @@ defmodule Api do
     "Unauthorized"
   end
 
-  # FIXME: No traceback ! :(
-  #rescue_from :all do
-  #  status 500
-  #  "Server Error"
-  #end
+  # FIXME: How to print traceback ! :(
+  rescue_from :all, as: e do
+    Logger.error "Internal error: #{inspect e}"
+    status 500
+    "Server Error"
+  end
 end
