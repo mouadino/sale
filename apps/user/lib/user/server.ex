@@ -10,13 +10,12 @@ defmodule User.Server do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
-  def handle_call(action, _from, state) do
-    result = case action do
-      {:get_by_token, token} -> get_by_token(token)
-      {:create, username, token} -> create(username, token)
-      # TODO: _ wildcard ! or is it better to user pattern matching in method level ?
-    end
-    {:reply, result, state}
+  def handle_call({:get_by_token, token}, from, state) do
+    {:reply, get_by_token(token), state}
+  end
+
+  def handle_call({:create, username, token}, from, state) do
+    {:reply, create(username, token), state}
   end
 
   @doc """
