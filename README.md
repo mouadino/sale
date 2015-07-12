@@ -6,8 +6,8 @@ Check README of each app under apps/
 Running
 -------
 
-    $ mix ecto.create -r User.Repo
-    $ mix ecto.migrate -r User.Repo
+    $ mix ecto.create -r Customer.Repo
+    $ mix ecto.migrate -r Customer.Repo
     $ iex -S mix
 
 

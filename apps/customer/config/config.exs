@@ -2,9 +2,19 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :user, User.Repo,
-  adapter: Sqlite.Ecto,
-  database: "/tmp/user.sqlite3"
+concurrency = 50
+
+config :customer, Customer.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "customers",
+  size: concurrency,
+  username: "mouadbenchchaoui",
+  password: "",
+  timeout: 30000
+
+config :customer,
+   pool_size: 0,
+   pool_max_overflow: concurrency
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
@@ -14,10 +24,10 @@ config :user, User.Repo,
 
 # Sample configuration:
 #
-#     config :logger, :console,
-#       level: :info,
-#       format: "$date $time [$level] $metadata$message\n",
-#       metadata: [:user_id]
+config :logger, :console,
+   level: :warn,
+   format: "$date $time [$level] $metadata$message\n",
+   metadata: [:user_id]
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
