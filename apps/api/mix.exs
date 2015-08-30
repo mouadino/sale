@@ -36,7 +36,7 @@ defmodule Api.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 0.13"},
+      {:plug, "~> 1.0.0"},
       {:poison, "~> 1.4.0"},
       # TODO: Depend on other umbrella apps ?
     ]

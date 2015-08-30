@@ -25,6 +25,7 @@ defmodule Api.Customer do
     end
     response = case GenServer.call(server_pid, {:create, params["username"], params["token"]}) do
       {:ok, user} -> user
+      {:error, msg} -> raise BadRequest, message: msg
       _ -> raise InternalError
     end
     send_resp(conn, 201, response |> Poison.encode!)

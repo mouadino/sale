@@ -13,8 +13,8 @@ config :customer, Customer.Repo,
   timeout: 30000
 
 config :customer,
-   pool_size: 0,
-   pool_max_overflow: concurrency
+   pool_size: concurrency,
+   pool_max_overflow: 0  #concurrency
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

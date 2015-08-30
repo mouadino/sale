@@ -13,6 +13,7 @@ defmodule Customer.Server do
   end
 
   defp background_worker(client, msg) do
+    # Handle exception e.g. wrong argument type, unkown method ... .
     :poolboy.transaction(:customer_pool, fn(worker) ->
       result = GenServer.call(worker, msg)
       GenServer.reply(client, result)

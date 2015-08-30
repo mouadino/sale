@@ -31,7 +31,11 @@ defmodule Customer.Handler do
   Create a new user.
   """
   def create(username, token) do
+    if Repo.get_by(CustomerModel, token: token) != nil do
+      {:error, "duplicate token"}
+    end
     user = %CustomerModel{username: username, token: token}
+    # TODO: Handle duplicate.
     {:ok, Repo.insert! user}
   end
 end
