@@ -9,6 +9,7 @@ defmodule Api do
 
     children = [
       worker(Plug.Adapters.Cowboy, [Api.Router, [], [port: port, ip: ip]], function: :http),
+      worker(Api.Repo, []),
     ]
 
     opts = [strategy: :one_for_one, name: Api.Supervisor]

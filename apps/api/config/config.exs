@@ -6,6 +6,14 @@ config :api,
   port: 8880,
   ip: {127, 0, 0, 1}
 
+config :api, Api.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "customers",
+  size: 50,
+  username: "mouadbenchchaoui",
+  password: "",
+  timeout: 30000
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

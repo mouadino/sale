@@ -2,6 +2,9 @@ defmodule Api.Customer do
   use Plug.Router
 
   import Plug.Conn
+  import Ecto.Query
+  alias Api.Model, as: CustomerModel
+  alias Api.Repo
 
   plug :match
   plug :dispatch
@@ -11,11 +14,15 @@ defmodule Api.Customer do
       [token] -> token
       _ -> raise Unauthorized
     end
-    response = case GenServer.call(server_pid, {:get_by_token, token}) do
-      {:ok, user} when is_map user -> user
-      _ -> raise NotFound, message: "Unknown User"
+    query = from u in CustomerModel,
+         where: u.token == ^token,
+         select: u
+    response = Repo.one(query)
+    if response == nil do
+      raise NotFound
+    else
+      send_resp(conn, 200, response |> Poison.encode!)
     end
-    send_resp(conn, 200, response |> Poison.encode!)
   end
 
   post "/" do
@@ -23,14 +30,11 @@ defmodule Api.Customer do
       {:ok, body, _} -> Poison.decode! body
       _ -> raise BadRequest, message: "Invalid JSON body"
     end
-    response = case GenServer.call(server_pid, {:create, params["username"], params["token"]}) do
-      {:ok, user} -> user
-      _ -> raise InternalError
+    if Repo.get_by(CustomerModel, token: params["token"]) != nil do
+        raise Conflict
     end
+    user = %CustomerModel{username: params["username"], token: params["token"]}
+    response = Repo.insert! user
     send_resp(conn, 201, response |> Poison.encode!)
-  end
-
-  defp server_pid() do
-    :global.whereis_name :customer
   end
 end

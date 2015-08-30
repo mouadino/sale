@@ -13,3 +13,7 @@ end
 defmodule BadRequest do
   defexception message: "Bad Request", code: :bad_request
 end
+
+defmodule Conflict do
+  defexception message: "Conflict", code: :conflict
+end

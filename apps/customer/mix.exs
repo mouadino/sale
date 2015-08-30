@@ -39,8 +39,8 @@ defmodule Customer.Mixfile do
       # Erlang18
       {:esqlite, git: "https://github.com/mmzeeman/esqlite.git", override: true},
       {:postgrex, ">= 0.0.0"},
-      {:sqlite_ecto, "~> 0.3.0"},
-      {:ecto, "~> 0.13.1"},
+      {:sqlite_ecto, "~> 1.0.0"},
+      {:ecto, "~> 1.0.0"},
       {:poolboy, "~> 1.5.1"},
     ]
 

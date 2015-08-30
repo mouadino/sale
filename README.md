@@ -59,6 +59,20 @@ After upgrading to github esqlite master on my virtualbox vm
 
 NOTE: No timeouts
 
+After upgrading ecto to 1.0.0 performance improved 100 times:
+
+
+    $ ./wrk -t10 -c400 -d30s -H"Authorization: xyz" http://127.0.0.1:8880/user/
+    Running 30s test @ http://127.0.0.1:8880/user/
+      10 threads and 400 connections
+      Thread Stats   Avg      Stdev     Max   +/- Stdev
+        Latency    68.17ms   16.35ms 306.50ms   89.61%
+        Req/Sec   583.23     90.59   840.00     80.47%
+      174360 requests in 30.05s, 54.87MB read
+      Socket errors: connect 0, read 254, write 0, timeout 0
+    Requests/sec:   5802.36
+    Transfer/sec:      1.83MB
+
 
 TODO
 ----

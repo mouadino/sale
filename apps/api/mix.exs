@@ -16,7 +16,7 @@ defmodule Api.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :cowboy, :poison, :plug],
+    [applications: [:logger, :cowboy, :poison, :plug, :ecto, :postgrex],
      mod: {Api, []}]
   end
 
@@ -38,6 +38,8 @@ defmodule Api.Mixfile do
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 0.13"},
       {:poison, "~> 1.4.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 1.0.0"},
       # TODO: Depend on other umbrella apps ?
     ]
   end
