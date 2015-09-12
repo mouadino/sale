@@ -1,8 +1,8 @@
-defmodule User.Mixfile do
+defmodule Customer.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :user,
+    [app: :customer,
      version: "0.0.1",
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
@@ -16,8 +16,8 @@ defmodule User.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :sqlite_ecto, :ecto],
-     mod: {User, []}]
+    [applications: [:logger, :sqlite_ecto, :ecto, :postgrex],
+     mod: {Customer, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -38,8 +38,10 @@ defmodule User.Mixfile do
       # NOTE: Temporarily use esqlite git master to be able to work with
       # Erlang18
       {:esqlite, git: "https://github.com/mmzeeman/esqlite.git", override: true},
-      {:sqlite_ecto, "~> 0.3.0"},
-      {:ecto, "~> 0.13.1"}
+      {:postgrex, ">= 0.0.0"},
+      {:sqlite_ecto, "~> 1.0.0"},
+      {:ecto, "~> 1.0.0"},
+      {:poolboy, "~> 1.5.1"},
     ]
 
   end

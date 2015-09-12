@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :user, User.Repo,
+config :customer, User.Repo,
   adapter: Sqlite.Ecto,
   pool: Ecto.Adapters.SQL.Sandbox,
-  database: "/tmp/user-test.sqlite3"
+  database: "/tmp/customer-test.sqlite3"

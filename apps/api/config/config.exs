@@ -2,8 +2,9 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :maru, Api,
-  http: [port: 8880]
+config :api,
+  port: 8880,
+  ip: {127, 0, 0, 1}
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
@@ -13,10 +14,10 @@ config :maru, Api,
 
 # Sample configuration:
 #
-#     config :logger, :console,
-#       level: :info,
-#       format: "$date $time [$level] $metadata$message\n",
-#       metadata: [:user_id]
+config :logger, :console,
+  level: :warn,  # XXX: Changing log level influence benchmarks.
+  format: "$date $time [$level] $metadata$message\n",
+  metadata: [:user_id]
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
@@ -24,4 +25,4 @@ config :maru, Api,
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
+import_config "#{Mix.env}.exs"
